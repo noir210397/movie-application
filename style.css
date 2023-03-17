@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Ubuntu,sans-serif;
+    height: 100vh;
+    background-color: aliceblue;
+}
+header>span{
+    font-weight: 900;
+    font-size: 3em;
+}
+header{
+    padding: .5em;
+}
+.green{
+    color: rgb(85, 240, 85);
+}
+.container{
+    margin-bottom: 1em;
+    
+}
+.movie-wrapper{
+    max-width: 600px;
+    background-color: rgb(85, 240, 85);
+    margin: 0 auto;
+    padding: 1em;
+    position: relative;
+    margin-bottom: .7em;
+    /* height: 200px;
+    overflow: scroll; */
+}
+li{
+    list-style: none;
+    /* background-color: red; */
+    font-size: 1em;
+}
+input{
+    width: 100%;
+    padding: 1em;
+    border: none;
+    border-radius: 10px;
+}
+input:focus{
+    outline: none;
+}
+input::placeholder{
+    font-size: 1.3em;
+}
+ul{
+    position: absolute;
+    z-index: 1000;
+    background:rgb(85, 240, 85);
+    /* opacity: .4; */
+    /* display: none; */
+    max-height: 400px;
+    overflow-y: scroll;
+}
+/* ::-webkit-scrollbar{
+    width: 5px;
+}
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  } */
+ul li{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+    /* overflow-y: scroll; */
+}
+.img{
+    /* width: 50%; */
+    flex: .2;
+    /* border: 4px solid green; */
+
+}
+ul li img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.text-part{
+    flex:1;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* padding: .7em; */
+}
+.movie-display{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    gap: 1em;
+    /* border: 1px solid red; */
+}
+.movie-name{
+    color: rgb(85, 240, 85);
+    font-size: 1.4em;
+    font-weight: 700;
+    /* padding: 1em; */
+    /* padding-block: 1em; */
+}
+.img img{
+    width: 100%;
+}
+.image{
+    flex: .4;
+    /* width: 50%; */
+    /* border: 1px solid black; */
+}
+.image img{
+    height: 100%;
+}
+.display-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    flex: 1;
+}
+.display-text p{
+    padding-block: .6em;
+}
+@media screen and (max-width:760px) {
+    .movie-display{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .image{
+        flex: .4;
+    }
+    .image img{
+        width: 100%;
+        /* align-self: center; */
+    }
+    .display-text{
+        flex: 1;
+    }
+    header>span{
+        font-size: 2em;
+    }
+    
+}
