@@ -1,26 +1,26 @@
-let apiUrl = "http://www.omdbapi.com/?s=I spit&page=1&apikey=d80c333c"
+let apiUrl = "https://www.omdbapi.com/?s=I spit&page=1&apikey=d80c333c"
 let searchBar = document.querySelector('#search-bar')
 let list = document.querySelector("ul")
 let moviePage = document.querySelector(".movie-display")
 searchBar.addEventListener("keyup", () => {
-    if (searchBar.value.trim() !== "" && searchBar.value.trim().length > 3) {
-        getMovies(searchBar.value.trim())
+  if (searchBar.value.trim() !== "" && searchBar.value.trim().length > 3) {
+    getMovies(searchBar.value.trim())
 
-    }
-    else {
-        list.innerHTML = ""
-        return
+  }
+  else {
+    list.innerHTML = ""
+    return
 
-    }
+  }
 })
 async function getMovies(v) {
-    try {
-        const searchedMovies = await fetch(`http://www.omdbapi.com/?s=${v}&page=1&apikey=d80c333c`)
-        const data = await searchedMovies.json()
-        if (data.Search !== undefined) {
-            west = await data.Search.map((item) => {
-                const { Title, Poster, Year } = item
-                return `
+  try {
+    const searchedMovies = await fetch(`https://www.omdbapi.com/?s=${v}&page=1&apikey=d80c333c`)
+    const data = await searchedMovies.json()
+    if (data.Search !== undefined) {
+      west = await data.Search.map((item) => {
+        const { Title, Poster, Year } = item
+        return `
         <li id="${Title}">
         <div class="img">
           <img
@@ -33,32 +33,32 @@ async function getMovies(v) {
           <p>${Year}</p>
         </div>
       </li>`
-            })
-            list.innerHTML = west.join()
-            let arrListen = [...document.querySelectorAll("li")]
-            arrListen.forEach(item => {
-                item.addEventListener("click", () => {
-                    getMainMoviePage(item.id)
-                })
-            })
-        }
-        else { return }
+      })
+      list.innerHTML = west.join()
+      let arrListen = [...document.querySelectorAll("li")]
+      arrListen.forEach(item => {
+        item.addEventListener("click", () => {
+          getMainMoviePage(item.id)
+        })
+      })
     }
-    catch (err) {
-        console.log(err)
-    }
+    else { return }
+  }
+  catch (err) {
+    console.log(err)
+  }
 
 }
 // getMovies("spiderman")
 
 async function getMainMoviePage(x) {
-    try {
-        const movie = await fetch(`http://www.omdbapi.com/?t=${x}&apikey=d80c333c`)
-        const data = await movie.json()
-        const dataToUse = [data]
-        const y = dataToUse.map(item => {
-            const { Title, Genre, Year, Plot, Poster, Language, Awards, Ratings, Released, Writer, Actors } = item
-            return `<div class="image">
+  try {
+    const movie = await fetch(`https://www.omdbapi.com/?t=${x}&apikey=d80c333c`)
+    const data = await movie.json()
+    const dataToUse = [data]
+    const y = dataToUse.map(item => {
+      const { Title, Genre, Year, Plot, Poster, Language, Awards, Ratings, Released, Writer, Actors } = item
+      return `<div class="image">
         <img
           src="${Poster}"
           alt=""
@@ -78,14 +78,14 @@ async function getMainMoviePage(x) {
           <p>Awards:${Awards}</p>
         </div>
       </div>`
-        })
-        moviePage.innerHTML = y.join()
-        list.innerHTML = ""
-        searchBar.value = ""
-    }
-    catch (err) {
-        console.log(err)
-    }
-    // console.log(y)
-    // window.location("./index.html")
+    })
+    moviePage.innerHTML = y.join()
+    list.innerHTML = ""
+    searchBar.value = ""
+  }
+  catch (err) {
+    console.log(err)
+  }
+  // console.log(y)
+  // window.location("./index.html")
 }
