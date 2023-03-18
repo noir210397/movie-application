@@ -2,9 +2,11 @@ let apiUrl = "https://www.omdbapi.com/?s=I spit&page=1&apikey=d80c333c"
 let searchBar = document.querySelector('#search-bar')
 let list = document.querySelector("ul")
 let moviePage = document.querySelector(".movie-display")
-searchBar.addEventListener("keyup", () => {
+searchBar.addEventListener("input", debounce(run, 1000))
+function run() {
   if (searchBar.value.trim() !== "" && searchBar.value.trim().length > 3) {
     getMovies(searchBar.value.trim())
+    // console.log("live")
 
   }
   else {
@@ -12,7 +14,19 @@ searchBar.addEventListener("keyup", () => {
     return
 
   }
-})
+}
+function debounce(f, ms) {
+  let timer
+  return function () {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      f()
+    }, ms)
+  }
+
+}
 async function getMovies(v) {
   try {
     const searchedMovies = await fetch(`https://www.omdbapi.com/?s=${v}&page=1&apikey=d80c333c`)
